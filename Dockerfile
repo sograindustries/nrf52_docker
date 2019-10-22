@@ -11,7 +11,6 @@ RUN curl -X POST -F "fileid=8F19D314130548209E75EFFADD9348DB" https://www.nordic
 	rm nrftools.tar
 ENV PATH="/mergehex:/nrfjprog:$PATH"
 
-
 RUN curl https://www.segger.com/downloads/embedded-studio/Setup_EmbeddedStudio_ARM_v350_linux_x64.tar.gz -o ses.tar.gz && \
 	tar -zxvf ses.tar.gz && \
 	DISPLAY=:1 $(find arm_segger_* -name "install_segger*") --copy-files-to /ses && \
@@ -20,4 +19,8 @@ RUN curl https://www.segger.com/downloads/embedded-studio/Setup_EmbeddedStudio_A
 
 RUN curl https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_v15.x.x/nRF5_SDK_15.2.0_9412b96.zip -o nRF5_SDK_15.2.0_9412b96.zip && unzip nRF5_SDK_15.2.0_9412b96.zip && rm nRF5_SDK_15.2.0_9412b96.zip
 
-CMD ["/ses/bin/emBuild"]
+# Copies your code file from your action repository to the filesystem path `/` of the container
+COPY entrypoint.sh /entrypoint.sh
+
+# Code file to execute when the docker container starts up (`entrypoint.sh`)
+ENTRYPOINT ["/entrypoint.sh"]

@@ -2,14 +2,17 @@
 
 SECRET_TOKEN=$1
 REPO=$2
-CONFIG=$3
-PROJECT=$4
-ARTIFACT=$5
-MAPPED_DIR=$6
+COMMIT=$3
+CONFIG=$4
+PROJECT=$5
+ARTIFACT=$6
+MAPPED_DIR=$7
 
 EMBUILD=/ses/bin/emBuild
 
 git clone https://${SECRET_TOKEN}@github.com/${REPO} /repo
+
+git checkout ${COMMIT}
 
 ${EMBUILD} -verbose -config ${CONFIG} -batch /repo/${PROJECT}
 

@@ -12,6 +12,7 @@ EMBUILD=/ses/bin/emBuild
 
 git clone https://${SECRET_TOKEN}@github.com/${REPO} /repo
 
+cd /repo
 git checkout ${COMMIT}
 
 ${EMBUILD} -verbose -config ${CONFIG} -batch /repo/${PROJECT}

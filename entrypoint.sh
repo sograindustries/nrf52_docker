@@ -15,6 +15,7 @@ git clone https://${SECRET_TOKEN}@github.com/${REPO} /repo
 
 cd /repo
 git checkout ${COMMIT}
+git submodule update --init --recursive
 
 pip install -r requirements.txt
 

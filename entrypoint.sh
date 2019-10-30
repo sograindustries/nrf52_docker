@@ -24,7 +24,7 @@ pip install -r requirements.txt
 ${EMBUILD} -verbose -config ${CONFIG} -batch /repo/${PROJECT}
 
 if test -f "$POST_BUILD_SCRIPT"; then
-    ${POST_BUILD_SCRIPT}
+    ${POST_BUILD_SCRIPT} ${MAPPED_DIR}
 fi
 
 cp $ARTIFACT $MAPPED_DIR

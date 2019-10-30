@@ -21,7 +21,7 @@ git submodule update --init --recursive
 
 pip install -r requirements.txt
 
-${EMBUILD} -verbose -config ${CONFIG} -batch /repo/${PROJECT}
+${EMBUILD} -verbose -config ${CONFIG} -D EXT_COMMIT_HASH=\"${COMMIT}\" -batch /repo/${PROJECT}
 
 if test -f "$POST_BUILD_SCRIPT"; then
     ${POST_BUILD_SCRIPT} ${MAPPED_DIR}
